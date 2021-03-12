@@ -38,6 +38,19 @@ class MoviesController < ApplicationController
     redirect_to movies_path
   end
 
+  #Controller when clicking movies with same director
+  def same_director
+    @movie = Movie.find(params[:id])#Finds the ID of submitted forms
+
+    if @movie.director == "" || @movie.director == nil
+      redirect_to movies_path #Go back to movies_path
+      flash[:notice] = "'#{@movie.title}' has no director info"
+    else
+      @movies = Movie.list_same_director_movies(@movie.director) #Find movies with same director and send same_director view to client
+    end
+  end
+    
+
   private
   # Making "internal" methods private is not required, but is a common practice.
   # This helps make clear which methods respond to requests, and which ones do not.

@@ -1,0 +1,39 @@
+<!--  This file is app/views/movies/same_director.html.erb  copied from index.html.erb , 
+Shows the list of movies with same -->
+<h2>Movies with the director: <%= @movie.director.upcase %></h2>
+
+<%#  Part 2: Start here... %>
+
+<table class="table table-striped col-md-12" id="movies">
+  <thead>
+    <tr>
+      <th>Movie Title</th>
+      <th>Rating</th>
+      <th>Release Date</th>
+      <th>Director</th>
+      <th>More Info</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @movies.each do |movie| %>
+      <tr>
+        <td>
+          <%= movie.title %>
+        </td>
+        <td>
+          <%= movie.rating %>
+        </td>
+        <td>
+          <%= movie.release_date %>
+        </td>
+        <td>
+          <%= movie.director %>
+        </td>
+        <td>
+          <%= link_to "More about #{movie.title}", movie_path(movie) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'Back', movie_path(@movie), :class => 'btn btn-primary' %>
